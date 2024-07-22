@@ -1,0 +1,6 @@
+package com.anurag.project.uber.uberApp.entities.enums;
+
+public enum Role {
+    ADMIN,DRIVER,RIDER
+
+}
