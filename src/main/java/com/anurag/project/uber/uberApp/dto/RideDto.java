@@ -20,6 +20,7 @@ public class RideDto {
     private PaymentMethod paymentMethod;
     private RideStatus rideStatus;
 
+    private String opt;
     private Double fare;
     private LocalDateTime startedAt;
     private LocalDateTime endedAt;
