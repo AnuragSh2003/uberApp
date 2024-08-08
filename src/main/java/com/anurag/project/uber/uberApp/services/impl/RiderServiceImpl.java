@@ -5,7 +5,9 @@ import com.anurag.project.uber.uberApp.dto.RideDto;
 import com.anurag.project.uber.uberApp.dto.RideRequestDto;
 import com.anurag.project.uber.uberApp.entities.RideRequest;
 import com.anurag.project.uber.uberApp.entities.enums.RideRequestStatus;
+import com.anurag.project.uber.uberApp.repositories.RideRequestRepository;
 import com.anurag.project.uber.uberApp.services.RiderService;
+import com.anurag.project.uber.uberApp.strategies.DriverMatchingStrategy;
 import com.anurag.project.uber.uberApp.strategies.RideFareCalculationStrategy;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,7 +23,8 @@ public class RiderServiceImpl implements RiderService {
 
     private  final ModelMapper modelMapper;
     private  final RideFareCalculationStrategy rideFareCalculationStrategy;
-    
+    private  final DriverMatchingStrategy driverMatchingStrategy;
+    private  final RideRequestRepository rideRequestRepository;
     @Override
     public RideRequestDto requestRide(RideRequestDto rideRequestDto) {
 
@@ -29,11 +32,15 @@ public class RiderServiceImpl implements RiderService {
 
         rideRequest.setRideRequestStatus(RideRequestStatus.PENDING);
 
-        Double fare = rideFareCalculationStrategy.calculateFare(rideRequestDto);
+        Double fare = rideFareCalculationStrategy.calculateFare(rideRequest);
 
         rideRequest.setFare(fare);
 
-        return null;
+        RideRequest savedRideRequest = rideRequestRepository.save(rideRequest);
+
+        driverMatchingStrategy.findMatchingDriver(rideRequest);
+
+        return modelMapper.map(savedRideRequest,RideRequestDto.class);
     }
 
     @Override
