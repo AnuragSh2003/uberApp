@@ -21,5 +21,5 @@ public class Driver {
     private String vehicleId;
 
     @Column(columnDefinition = "Geometry(Point, 4326)") // defining earth geometry
-    Point currentLocation;
+    private Point currentLocation;
 }

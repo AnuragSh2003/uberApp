@@ -12,10 +12,11 @@ public class RideDto {
 
 
     private  Long id;
-    private Point pickupLocation;
-    private  Point dropOfLocation;
+    private PointDto pickupLocation;
+    private  PointDto dropOffLocation;
     private LocalDateTime createdTime;
-    private RideDto rider;
+    private RiderDto rider;
+
     private DriverDto driver;
     private PaymentMethod paymentMethod;
     private RideStatus rideStatus;
