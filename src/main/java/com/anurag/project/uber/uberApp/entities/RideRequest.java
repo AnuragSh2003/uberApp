@@ -1,6 +1,5 @@
 package com.anurag.project.uber.uberApp.entities;
 
-import com.anurag.project.uber.uberApp.dto.PointDto;
 import com.anurag.project.uber.uberApp.entities.enums.PaymentMethod;
 import com.anurag.project.uber.uberApp.entities.enums.RideRequestStatus;
 import jakarta.persistence.*;

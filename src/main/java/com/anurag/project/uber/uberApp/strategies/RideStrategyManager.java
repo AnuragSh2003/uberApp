@@ -2,12 +2,11 @@ package com.anurag.project.uber.uberApp.strategies;
 
 import com.anurag.project.uber.uberApp.strategies.Impl.DriverMatchingHighestRateDriverStrategy;
 import com.anurag.project.uber.uberApp.strategies.Impl.DriverMatchingNearestDriverStrategy;
-import com.anurag.project.uber.uberApp.strategies.Impl.RiderFareDefaultFareCalculationStrategy;
 import com.anurag.project.uber.uberApp.strategies.Impl.RideFareSurgePricingFareCalculationStrategy;
+import com.anurag.project.uber.uberApp.strategies.Impl.RiderFareDefaultFareCalculationStrategy;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Component

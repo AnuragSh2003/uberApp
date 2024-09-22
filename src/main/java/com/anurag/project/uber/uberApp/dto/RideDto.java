@@ -1,19 +1,17 @@
 package com.anurag.project.uber.uberApp.dto;
 
-import com.anurag.project.uber.uberApp.entities.Driver;
-import com.anurag.project.uber.uberApp.entities.Rider;
 import com.anurag.project.uber.uberApp.entities.enums.PaymentMethod;
 import com.anurag.project.uber.uberApp.entities.enums.RideStatus;
-import org.locationtech.jts.geom.Point;
+import lombok.Data;
 
 import java.time.LocalDateTime;
-
+@Data
 public class RideDto {
 
 
     private  Long id;
     private PointDto pickupLocation;
-    private  PointDto dropOffLocation;
+    private PointDto dropOffLocation;
     private LocalDateTime createdTime;
     private RiderDto rider;
 

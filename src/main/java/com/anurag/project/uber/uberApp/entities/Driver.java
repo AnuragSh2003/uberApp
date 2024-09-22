@@ -1,9 +1,9 @@
 package com.anurag.project.uber.uberApp.entities;
 
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.locationtech.jts.geom.Point;
-import jakarta.persistence.*;
 
 @Entity
 @Getter
