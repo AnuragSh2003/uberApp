@@ -1,9 +1,9 @@
 package com.anurag.project.uber.uberApp.services.impl;
 
-import com.anurag.project.uber.uberApp.dto.RideRequestDto;
 import com.anurag.project.uber.uberApp.entities.Driver;
 import com.anurag.project.uber.uberApp.entities.Ride;
 import com.anurag.project.uber.uberApp.entities.RideRequest;
+import com.anurag.project.uber.uberApp.entities.Rider;
 import com.anurag.project.uber.uberApp.entities.enums.RideRequestStatus;
 import com.anurag.project.uber.uberApp.entities.enums.RideStatus;
 import com.anurag.project.uber.uberApp.exceptions.ResourceNotFoundException;
@@ -30,17 +30,13 @@ public class RideServiceImpl implements RideService {
         return rideRepository.findById(rideId).orElseThrow(()-> new ResourceNotFoundException("Ride not found with id: "+rideId));
     }
 
-    @Override
-    public void matchWithDrivers(RideRequestDto rideRequestDto) {
-
-    }
 
     @Override
     public Ride createNewRide(RideRequest rideRequest, Driver driver) {
         rideRequest.setRideRequestStatus(RideRequestStatus.CONFIRM);
 
         Ride ride = modelMapper.map(rideRequest,Ride.class);
-        ride.setRideStatus(RideStatus.CONFIRM);
+        ride.setRideStatus(RideStatus.CONFIRMED);
         ride.setDriver(driver);
         ride.setOtp(generateRandomOTP());
         ride.setId(null);
@@ -56,13 +52,13 @@ public class RideServiceImpl implements RideService {
 
 
     @Override
-    public Page<Ride> getALlRidesOfRider(Long riderId, PageRequest pageRequest) {
-        return null;
+    public Page<Ride> getALlRidesOfRider(Rider rider, PageRequest pageRequest) {
+        return rideRepository.findByRider(rider,pageRequest);
     }
 
     @Override
-    public Page<Ride> getAllRidesOfDriver(Long driverId, PageRequest pageRequest) {
-        return null;
+    public Page<Ride> getAllRidesOfDriver(Driver driver, PageRequest pageRequest) {
+        return rideRepository.findByDriver(driver,pageRequest);
     }
 
     private String generateRandomOTP() {
